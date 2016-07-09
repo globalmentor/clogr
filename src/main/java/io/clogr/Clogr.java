@@ -73,7 +73,7 @@ public class Clogr {
 	 * @see LoggingConcern#DEFAULT
 	 */
 	public static @Nonnull LoggingConcern getLoggingConcern() {
-		return Csar.getConcern(LoggingConcern.class).orElse(LoggingConcern.DEFAULT);
+		return Csar.getOptionalConcern(LoggingConcern.class).orElse(LoggingConcern.DEFAULT);
 	}
 
 	/**
