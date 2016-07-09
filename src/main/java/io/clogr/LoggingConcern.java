@@ -38,7 +38,7 @@ public interface LoggingConcern extends Concern {
 	 */
 	public static final LoggingConcern DEFAULT = new LoggingConcern() {
 		@Override
-		public ILoggerFactory getILoggerFactory() {
+		public ILoggerFactory getLoggerFactory() {
 			return LoggerFactory.getILoggerFactory();
 		}
 	};
@@ -49,7 +49,7 @@ public interface LoggingConcern extends Concern {
 	}
 
 	/** @return The logger factory configured for this logging concern. */
-	public @Nonnull ILoggerFactory getILoggerFactory();
+	public @Nonnull ILoggerFactory getLoggerFactory();
 
 	/**
 	 * Returns an appropriate logger for the given context.
@@ -59,20 +59,20 @@ public interface LoggingConcern extends Concern {
 	 * @param contextClass The context for which logging is to be performed.
 	 * @return A logger instance to use with the given context class.
 	 * @throws NullPointerException if the given context class is <code>null</code>.
-	 * @see #getILoggerFactory()
+	 * @see #getLoggerFactory()
 	 */
 	public default @Nonnull Logger getLogger(@Nonnull final Class<?> contextClass) {
-		return getILoggerFactory().getLogger(contextClass.getName());
+		return getLoggerFactory().getLogger(contextClass.getName());
 	}
 
 	/**
 	 * Retrieves root logger of the underlying logging system.
 	 * @return The root logger.
-	 * @see #getILoggerFactory()
+	 * @see #getLoggerFactory()
 	 * @see Logger#ROOT_LOGGER_NAME
 	 */
 	public default @Nonnull Logger getRootLogger() {
-		return getILoggerFactory().getLogger(Logger.ROOT_LOGGER_NAME);
+		return getLoggerFactory().getLogger(Logger.ROOT_LOGGER_NAME);
 	}
 
 }
