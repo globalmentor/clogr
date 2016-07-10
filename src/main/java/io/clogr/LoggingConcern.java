@@ -19,6 +19,7 @@ package io.clogr;
 import javax.annotation.*;
 
 import org.slf4j.*;
+import org.slf4j.event.Level;
 
 import io.csar.*;
 
@@ -34,12 +35,21 @@ public interface LoggingConcern extends Concern {
 	 * <p>
 	 * Retrieving a logger from this logger concern's {@link #getLogger(Class)} is equivalent to calling {@link LoggerFactory#getLogger(Class)}.
 	 * </p>
+	 * <p>
+	 * This logging concern does not support setting the log level.
+	 * </p>
 	 * @see LoggerFactory#getILoggerFactory()
 	 */
 	public static final LoggingConcern DEFAULT = new LoggingConcern() {
 		@Override
 		public ILoggerFactory getLoggerFactory() {
 			return LoggerFactory.getILoggerFactory();
+		}
+
+		@Override
+		public void setLogLevel(final Logger logger, final Level level) {
+			throw new UnsupportedOperationException(
+					"Default logging concern does not support setting the log level. Include an implementation-specific Clogr dependency.");
 		}
 	};
 
@@ -73,6 +83,23 @@ public interface LoggingConcern extends Concern {
 	 */
 	public default @Nonnull Logger getRootLogger() {
 		return getLoggerFactory().getLogger(Logger.ROOT_LOGGER_NAME);
+	}
+
+	/**
+	 * Sets the log level of a particular logger.
+	 * @param logger The logger for which the log level should be set.
+	 * @param level The minimum logging level for which messages should be logged.
+	 */
+	public void setLogLevel(@Nonnull Logger logger, @Nonnull final Level level);
+
+	/**
+	 * Sets the log level of the root logger.
+	 * @param level The minimum logging level for which messages should be logged.
+	 * @see #getRootLogger()
+	 * @see #setLogLevel(Logger, Level)
+	 */
+	public default void setLogLevel(@Nonnull final Level level) {
+		setLogLevel(getRootLogger(), level);
 	}
 
 }
