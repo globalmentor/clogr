@@ -10,8 +10,6 @@ Moreover classes needing access to a logger may implement `Clogged` for simplifi
 
 Clogr is available in the Maven Central Repository in group [io.clogr](http://search.maven.org/#search|ga|1|g%3A%22io.clogr%22).
 
-**Important:** Clogr only declares the `org.slf4j:slf4j-api` dependency for compilation and testing. You must manually provide a dependency to SLF4J in your own build configuration. Because Clogr provides convenience access to SLF4J, it is expected that SLF4J versions will change much more rapidly than that of Clogr; there furthermore is no need of Clogr to change with general SLF4J modifications improvements. Requiring manual specification of an SLF4J version in a consuming project allows the project to determine its own preferred SLF4J without a complex mechanism of transitive dependency exclusion and replacement.
-
 ## Issues
 
 Issues tracked by [JIRA](https://globalmentor.atlassian.net/browse/CLOGR).
