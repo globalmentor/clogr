@@ -16,7 +16,16 @@
 
 package io.clogr.logback;
 
+import static java.util.Objects.*;
+
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Path;
+
+import javax.annotation.*;
+
 import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.util.ContextInitializer;
 import ch.qos.logback.core.joran.spi.JoranException;
 
@@ -42,8 +51,84 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 */
-	public LogbackLoggingConcern autoConfig() throws JoranException {
+	public LogbackLoggingConcern autoConfigure() throws JoranException {
 		new ContextInitializer(this).autoConfig();
+		return this;
+	}
+
+	/**
+	 * Configures this logging concern from a Logback configuration file at a specified path.
+	 * <p>
+	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
+	 * call {@link #reset()} between each step.
+	 * </p>
+	 * @param path The path to the Logback configuration file.
+	 * @return This logging concern; useful for chaining configuration commands.
+	 * @throws JoranException if an error occurred during configuration;
+	 * @see JoranConfigurator#doConfigure(File)
+	 * @see <a href="Logback configuration">Logback configuration</a>
+	 */
+	public LogbackLoggingConcern configure(@Nonnull final Path path) throws JoranException {
+		return configure(path.toFile());
+	}
+
+	/**
+	 * Configures this logging concern from a Logback configuration file.
+	 * <p>
+	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
+	 * call {@link #reset()} between each step.
+	 * </p>
+	 * @param file The Logback configuration file.
+	 * @return This logging concern; useful for chaining configuration commands.
+	 * @throws JoranException if an error occurred during configuration;
+	 * @see JoranConfigurator#doConfigure(File)
+	 * @see <a href="Logback configuration">Logback configuration</a>
+	 */
+	public LogbackLoggingConcern configure(@Nonnull final File file) throws JoranException {
+		requireNonNull(file);
+		final JoranConfigurator configurator = new JoranConfigurator();
+		configurator.setContext(this);
+		configurator.doConfigure(file);
+		return this;
+	}
+
+	/**
+	 * Configures this logging concern from a Logback configuration file at a specified URL.
+	 * <p>
+	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
+	 * call {@link #reset()} between each step.
+	 * </p>
+	 * @param url The URL to the Logback configuration file.
+	 * @return This logging concern; useful for chaining configuration commands.
+	 * @throws JoranException if an error occurred during configuration;
+	 * @see JoranConfigurator#doConfigure(URL)
+	 * @see <a href="Logback configuration">Logback configuration</a>
+	 */
+	public LogbackLoggingConcern configure(@Nonnull final URL url) throws JoranException {
+		requireNonNull(url);
+		final JoranConfigurator configurator = new JoranConfigurator();
+		configurator.setContext(this);
+		configurator.doConfigure(url);
+		return this;
+	}
+
+	/**
+	 * Configures this logging concern from a Logback configuration file from a specified input stream.
+	 * <p>
+	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
+	 * call {@link #reset()} between each step.
+	 * </p>
+	 * @param inputStream The input stream to the Logback configuration file.
+	 * @return This logging concern; useful for chaining configuration commands.
+	 * @throws JoranException if an error occurred during configuration;
+	 * @see JoranConfigurator#doConfigure(InputStream)
+	 * @see <a href="Logback configuration">Logback configuration</a>
+	 */
+	public LogbackLoggingConcern configure(@Nonnull final InputStream inputStream) throws JoranException {
+		requireNonNull(inputStream);
+		final JoranConfigurator configurator = new JoranConfigurator();
+		configurator.setContext(this);
+		configurator.doConfigure(inputStream);
 		return this;
 	}
 
