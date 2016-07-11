@@ -16,15 +16,9 @@
 
 package io.clogr.logback;
 
-import javax.annotation.*;
-
-import org.slf4j.*;
-import org.slf4j.event.Level;
-
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.util.ContextInitializer;
 import ch.qos.logback.core.joran.spi.JoranException;
-import io.clogr.LoggingConcern;
 
 /**
  * A concern for logging configurations backed by Logback.
@@ -33,53 +27,11 @@ import io.clogr.LoggingConcern;
  * </p>
  * @author Garret Wilson
  */
-public class LogbackLoggingConcern extends LoggerContext implements LoggingConcern {
+public class LogbackLoggingConcern extends LoggerContext implements LoggerContextLoggingConcern {
 
 	@Override
-	public ILoggerFactory getLoggerFactory() {
+	public LoggerContext getLoggerContext() {
 		return this;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * <p>
-	 * This version returns the root logger as a Logback logger.
-	 * </p>
-	 */
-	@Override
-	public ch.qos.logback.classic.Logger getRootLogger() {
-		return (ch.qos.logback.classic.Logger)LoggingConcern.super.getRootLogger();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @throws ClassCastException if the given logger is an an instance of {@link ch.qos.logback.classic.Logger}.
-	 */
-	@Override
-	public void setLogLevel(final Logger logger, final Level level) {
-		((ch.qos.logback.classic.Logger)logger).setLevel(toLogbackLevel(level));
-	}
-
-	/**
-	 * Determines the Logback log level corresponding to the given SLF4J log level.
-	 * @param level The SLF4J log level.
-	 * @return The equivalent Logback log level.
-	 */
-	protected static ch.qos.logback.classic.Level toLogbackLevel(@Nonnull final Level level) {
-		switch(level) {
-			case ERROR:
-				return ch.qos.logback.classic.Level.ERROR;
-			case WARN:
-				return ch.qos.logback.classic.Level.WARN;
-			case INFO:
-				return ch.qos.logback.classic.Level.INFO;
-			case DEBUG:
-				return ch.qos.logback.classic.Level.DEBUG;
-			case TRACE:
-				return ch.qos.logback.classic.Level.TRACE;
-			default:
-				throw new AssertionError("Unknown log level: " + level);
-		}
 	}
 
 	/**

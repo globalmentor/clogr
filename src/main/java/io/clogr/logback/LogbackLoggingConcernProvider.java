@@ -16,29 +16,39 @@
 
 package io.clogr.logback;
 
+import static ch.qos.logback.classic.ClassicConstants.*;
+
 import java.util.stream.Stream;
 
-import org.slf4j.helpers.Util;
+import org.slf4j.impl.StaticLoggerBinder;
 
-import ch.qos.logback.core.joran.spi.JoranException;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.util.ContextSelectorStaticBinder;
+import io.clogr.*;
 import io.csar.*;
 
 /**
- * Provides a default Logback-based concern for logging. The default logging concern will be automatically configured, equivalent to a default Logback
- * installation.
+ * Provides a default Logback-based concern for logging. A logging concern is returned that wraps the default Logback logger context.
+ * <p>
+ * If this is class is loaded before the Logback before {@link StaticLoggerBinder} is loaded and before {@link ContextSelectorStaticBinder} is initialized, a
+ * {@link ClogrContextSelector} will be installed that will use {@link Clogr#getLoggingConcern()} to look up logging contexts.
+ * </p>
  * @author Garret Wilson
  * @see LogbackLoggingConcern
  */
 public class LogbackLoggingConcernProvider implements ConcernProvider {
 
+	static { //tell Logback to use the ClogrContextSelector for determining logging contexts
+		System.setProperty(LOGBACK_CONTEXT_SELECTOR, ClogrContextSelector.class.getName());
+		StaticLoggerBinder.getSingleton(); //load the SLF4J logger binder that initiates the Logback binding and installs the context selector 
+	}
+
 	@Override
 	public Stream<Concern> concerns() {
-		try {
-			return Stream.of(new LogbackLoggingConcern().autoConfig());
-		} catch(final JoranException joranException) {
-			//react to the error as Logback does in its default initialization
-			Util.report("Failed to auto configure default logger context", joranException);
-			return Stream.empty();
-		}
+		//get the default logger context from the context selector (which is hopefully the ClogrContextSelector we asked to be installed)
+		final LoggerContext defaultLoggerContext = ContextSelectorStaticBinder.getSingleton().getContextSelector().getDefaultLoggerContext();
+		//create a logging concern that wraps the default logger context
+		final LoggingConcern defaultLoggingConcern = new LoggerContextDecoratorLoggingConcern(defaultLoggerContext);
+		return Stream.of(defaultLoggingConcern);
 	}
 }

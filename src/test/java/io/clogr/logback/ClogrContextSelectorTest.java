@@ -20,22 +20,28 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
+import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import io.clogr.*;
 import io.csar.*;
 
 /**
- * Tests for {@link LogbackLoggingConcern}.
+ * Tests for {@link ClogrContextSelector}.
  * @author Garret Wilson
  */
-public class LogbackLoggingConcernTest {
+public class ClogrContextSelectorTest {
 
 	/**
+	 * Tests that retrieving a logger via SLF4J after {@link ClogrContextSelector} has been installed (which should happen automatically when
+	 * {@link LogbackLoggingConcernProvider} is installed by {@link Csar}) will use the same {@link LoggerContext} as would be used if accessed directly via Clogr
+	 * using {@link Clogr#getLogger(Class)}.
 	 * @see Clogr#setDefaultLoggingConcern(io.clogr.LoggingConcern)
-	 * @see Clogr#getLogger(Class)
+	 * @see LoggerFactory#getLogger(Class)
 	 * @see Csar#run(Runnable, Concern...)
+	 * @see LogbackLoggingConcernTest#testCsarRunSingleThread()
 	 */
 	@Test
 	public void testCsarRunSingleThread() throws InterruptedException {
@@ -55,10 +61,10 @@ public class LogbackLoggingConcernTest {
 		localAppender.start();
 		localLoggingConcern.getRootLogger().addAppender(localAppender);
 
-		Clogr.getLogger(getClass()).info("default");
+		LoggerFactory.getLogger(getClass()).info("default");
 
 		Csar.run(() -> {
-			Clogr.getLogger(getClass()).info("local");
+			LoggerFactory.getLogger(getClass()).info("local");
 		}, localLoggingConcern).join();
 
 		assertThat(defaultAppender.list.get(0).getMessage(), is("default"));
