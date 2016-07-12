@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Csar Logging Registration (Clogr)</name>
-	<description>Clogr simplifies SLF4J logger access while providing compartmentalized logging configurations via Csar.</description>
+	<description>Clogr simplifies SLF4J logging while providing compartmentalized logging configurations via Csar.</description>
 	<url>http://clogr.io/</url>
 	<inceptionYear>2016</inceptionYear>
 
