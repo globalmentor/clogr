@@ -66,7 +66,7 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 * @see JoranConfigurator#doConfigure(File)
-	 * @see <a href="Logback configuration">Logback configuration</a>
+	 * @see <a href="http://logback.qos.ch/manual/configuration.html">Logback configuration</a>
 	 */
 	public LogbackLoggingConcern configure(@Nonnull final Path path) throws JoranException {
 		return configure(path.toFile());
@@ -82,7 +82,7 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 * @see JoranConfigurator#doConfigure(File)
-	 * @see <a href="Logback configuration">Logback configuration</a>
+	 * @see <a href="http://logback.qos.ch/manual/configuration.html">Logback configuration</a>
 	 */
 	public LogbackLoggingConcern configure(@Nonnull final File file) throws JoranException {
 		requireNonNull(file);
@@ -102,7 +102,7 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 * @see JoranConfigurator#doConfigure(URL)
-	 * @see <a href="Logback configuration">Logback configuration</a>
+	 * @see <a href="http://logback.qos.ch/manual/configuration.html">Logback configuration</a>
 	 */
 	public LogbackLoggingConcern configure(@Nonnull final URL url) throws JoranException {
 		requireNonNull(url);
@@ -122,7 +122,7 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 * @see JoranConfigurator#doConfigure(InputStream)
-	 * @see <a href="Logback configuration">Logback configuration</a>
+	 * @see <a href="http://logback.qos.ch/manual/configuration.html">Logback configuration</a>
 	 */
 	public LogbackLoggingConcern configure(@Nonnull final InputStream inputStream) throws JoranException {
 		requireNonNull(inputStream);
