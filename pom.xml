@@ -38,7 +38,7 @@
 	<scm>
 		<connection>scm:git:https://bitbucket.org/globalmentor/clogr-logback.git</connection>
 		<developerConnection>scm:git:https://bitbucket.org/globalmentor/clogr-logback.git</developerConnection>
-		<url>https://bitbucket.org/globalmentor/rincl-resourcebundle</url>
+		<url>https://bitbucket.org/globalmentor/clogr-logback</url>
 	</scm>
 
 	<prerequisites>
@@ -75,6 +75,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
@@ -84,16 +85,7 @@
 	</dependencies>
 
 	<build>
-	<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<excludes>
-					<exclude>META-INF/services/io.csar.ConcernProvider</exclude>
-				</excludes>
-			</resource>
-		</resources>
-
-	<plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

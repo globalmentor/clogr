@@ -17,6 +17,7 @@
 package io.clogr.logback;
 
 import static org.junit.Assert.*;
+import static ch.qos.logback.classic.ClassicConstants.LOGBACK_CONTEXT_SELECTOR;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.*;
@@ -35,9 +36,8 @@ import io.csar.*;
 public class ClogrContextSelectorTest {
 
 	/**
-	 * Tests that retrieving a logger via SLF4J after {@link ClogrContextSelector} has been installed (which should happen automatically when
-	 * {@link LogbackLoggingConcernProvider} is installed by {@link Csar}) will use the same {@link LoggerContext} as would be used if accessed directly via Clogr
-	 * using {@link Clogr#getLogger(Class)}.
+	 * Tests that retrieving a logger via SLF4J after {@link ClogrContextSelector} has been installed, will use the same {@link LoggerContext} as would be used if
+	 * accessed directly via Clogr using {@link Clogr#getLogger(Class)}.
 	 * @see Clogr#setDefaultLoggingConcern(io.clogr.LoggingConcern)
 	 * @see LoggerFactory#getLogger(Class)
 	 * @see Csar#run(Runnable, Concern...)
@@ -45,6 +45,9 @@ public class ClogrContextSelectorTest {
 	 */
 	@Test
 	public void testCsarRunSingleThread() throws InterruptedException {
+
+		System.setProperty(LOGBACK_CONTEXT_SELECTOR, ClogrContextSelector.class.getName());
+
 		//set up a default logging concern
 		final LogbackLoggingConcern defaultLoggingConcern = new LogbackLoggingConcern();
 		final ListAppender<ILoggingEvent> defaultAppender = new ListAppender<>();
