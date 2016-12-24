@@ -36,9 +36,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://bitbucket.org/globalmentor/clogr-logback.git</connection>
-		<developerConnection>scm:git:https://bitbucket.org/globalmentor/clogr-logback.git</developerConnection>
-		<url>https://bitbucket.org/globalmentor/rincl-resourcebundle</url>
+		<connection>scm:git:https://bitbucket.org/globalmentor/clogr-logback-provider.git</connection>
+		<developerConnection>scm:git:https://bitbucket.org/globalmentor/clogr-logback-provider.git</developerConnection>
+		<url>https://bitbucket.org/globalmentor/clogr-logback-provider</url>
 	</scm>
 
 	<prerequisites>
@@ -57,30 +57,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-			<version>3.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.clogr</groupId>
-			<artifactId>clogr</artifactId>
-			<version>0.7.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.7</version>
-		</dependency>
-
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
@@ -90,15 +72,6 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>META-INF/services/io.csar.ConcernProvider</include>
-				</includes>
-			</resource>
-		</resources>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
