@@ -12,7 +12,7 @@ Clogr is available in the Maven Central Repository in group [io.clogr](http://se
 
 ## Issues
 
-Issues tracked by [JIRA](https://globalmentor.atlassian.net/browse/CLOGR).
+Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
 
 ## Changelog
 
