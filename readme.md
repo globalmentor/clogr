@@ -10,7 +10,7 @@ Clogr Logback is available in the [Maven Central Repository](http://search.maven
 
 ## Issues
 
-Issues tracked by [JIRA](https://globalmentor.atlassian.net/browse/CLOGR).
+Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
 
 ## Changelog
 
