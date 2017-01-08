@@ -8,7 +8,7 @@ This implementation includes `clogr-logback` as a dependency.
 
 ## Issues
 
-Issues tracked by [JIRA](https://globalmentor.atlassian.net/browse/CLOGR).
+Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
 
 ## Changelog
 
