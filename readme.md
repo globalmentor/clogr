@@ -8,7 +8,7 @@ Moreover classes needing access to a logger may implement `Clogged` for simplifi
 
 ## Download
 
-Clogr is available in the Maven Central Repository in group [io.clogr](http://search.maven.org/#search|ga|1|g%3A%22io.clogr%22).
+Clogr is available in the Maven Central Repository in group [io.clogr](https://search.maven.org/#search|ga|1|g%3A%22io.clogr%22).
 
 ## Issues
 
