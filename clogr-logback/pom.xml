@@ -13,12 +13,11 @@
 	<name>Clogr Logback</name>
 	<description>Clogr support for Logback.</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-		</dependency>
+	<properties>
+		<logback.version>1.2.3</logback.version>
+	</properties>
 
+	<dependencies>
 		<dependency>
 			<groupId>io.clogr</groupId>
 			<artifactId>clogr</artifactId>
@@ -27,27 +26,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.1.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>

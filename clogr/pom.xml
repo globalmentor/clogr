@@ -15,11 +15,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>jsr305</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>io.csar</groupId>
 			<artifactId>csar</artifactId>
 		</dependency>
@@ -29,14 +24,4 @@
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>
