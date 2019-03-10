@@ -45,10 +45,10 @@ public class Clogr {
 	/**
 	 * Returns the default logging concern.
 	 * @return The default logging concern.
-	 * @see Csar#getDefaultConcern(Class)
+	 * @see Csar#findDefaultConcern(Class)
 	 */
 	public static Optional<LoggingConcern> getDefaultLoggingConcern() {
-		return Csar.getDefaultConcern(LoggingConcern.class);
+		return Csar.findDefaultConcern(LoggingConcern.class);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Clogr {
 	 * @see LoggingConcern#DEFAULT
 	 */
 	public static @Nonnull LoggingConcern getLoggingConcern() {
-		return Csar.getOptionalConcern(LoggingConcern.class).orElse(LoggingConcern.DEFAULT);
+		return Csar.findConcern(LoggingConcern.class).orElse(LoggingConcern.DEFAULT);
 	}
 
 	/**
