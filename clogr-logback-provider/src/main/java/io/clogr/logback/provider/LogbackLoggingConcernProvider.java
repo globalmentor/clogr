@@ -17,7 +17,8 @@
 package io.clogr.logback.provider;
 
 import static ch.qos.logback.classic.ClassicConstants.LOGBACK_CONTEXT_SELECTOR;
-import static java.util.Collections.*;
+
+import java.util.stream.Stream;
 
 import org.slf4j.impl.StaticLoggerBinder;
 
@@ -47,12 +48,12 @@ public class LogbackLoggingConcernProvider implements ConcernProvider {
 	}
 
 	@Override
-	public Iterable<Concern> getConcerns() {
+	public Stream<Concern> concerns() {
 		//get the default logger context from the context selector (which is hopefully the ClogrContextSelector we asked to be installed)
 		final LoggerContext defaultLoggerContext = ContextSelectorStaticBinder.getSingleton().getContextSelector().getDefaultLoggerContext();
 		//create a logging concern that wraps the default logger context
 		final LoggingConcern defaultLoggingConcern = new LoggerContextDecoratorLoggingConcern(defaultLoggerContext);
-		return singleton(defaultLoggingConcern);
+		return Stream.of(defaultLoggingConcern);
 	}
 
 }
