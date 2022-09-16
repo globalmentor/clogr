@@ -9,19 +9,19 @@
 	</parent>
 
 	<groupId>io.clogr</groupId>
-	<artifactId>clogr-parent</artifactId>
+	<artifactId>clogr-bom</artifactId>
 	<version>0.8.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>Clogr Parent</name>
-	<description>Parent POM of all Clogr projects.</description>
+	<name>Clogr BOM</name>
+	<description>Parent POM and bill of materials of all Clogr projects.</description>
 	<url>https://clogr.io/</url>
 	<inceptionYear>2016</inceptionYear>
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -68,6 +68,12 @@
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback</artifactId>
+				<version>0.8.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.clogr</groupId>
+				<artifactId>clogr-logback-provider</artifactId>
 				<version>0.8.1-SNAPSHOT</version>
 			</dependency>
 
