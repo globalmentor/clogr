@@ -26,14 +26,16 @@ import javax.annotation.*;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.classic.selector.ContextSelector;
 import ch.qos.logback.classic.util.ContextInitializer;
 import ch.qos.logback.core.joran.spi.JoranException;
 
 /**
  * A concern for logging configurations backed by Logback.
- * <p>
- * A Logback logging concern is also a {@link LoggerContext} and can be configured as such.
- * </p>
+ * @apiNote This logging concern is for manual, programmatic configuration. It is not a default logging concern that delegates to the existing Logback SLF4J
+ *          configuration.
+ * @apiNote A Logback logging concern is also a {@link LoggerContext} and can be configured as such. However note that as of Logback 1.3.0-alpha4 Logback no
+ *          longer supports the {@link ContextSelector} mechanism for logging separation.
  * @author Garret Wilson
  */
 public class LogbackLoggingConcern extends LoggerContext implements LoggerContextLoggingConcern {

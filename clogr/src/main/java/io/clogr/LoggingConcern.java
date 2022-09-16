@@ -40,12 +40,7 @@ public interface LoggingConcern extends Concern {
 	 * </p>
 	 * @see LoggerFactory#getILoggerFactory()
 	 */
-	public static final LoggingConcern DEFAULT = new LoggingConcern() {
-		@Override
-		public ILoggerFactory getLoggerFactory() {
-			return LoggerFactory.getILoggerFactory();
-		}
-
+	public static final LoggingConcern DEFAULT = new BaseLoggingConcern() {
 		@Override
 		public void setLogLevel(final Logger logger, final Level level) {
 			throw new UnsupportedOperationException(

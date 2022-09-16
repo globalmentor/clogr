@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.globalmentor</groupId>
 		<artifactId>globalmentor-base</artifactId>
-		<version>0.6.0</version>
+		<version>0.7.2-SNAPSHOT</version>
 	</parent>
 
 	<groupId>io.clogr</groupId>
@@ -46,11 +46,6 @@
 		<url>https://bitbucket.org/globalmentor/clogr</url>
 	</scm>
 
-	<properties>
-		<slf4j.version>1.7.25</slf4j.version>
-		<csar.version>0.8.0</csar.version>
-	</properties>
-
 	<modules>
 		<module>clogr</module>
 		<module>clogr-logback</module>
@@ -80,13 +75,7 @@
 			<dependency>
 				<groupId>io.csar</groupId>
 				<artifactId>csar</artifactId>
-				<version>${csar.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
+				<version>0.8.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

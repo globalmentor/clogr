@@ -17,43 +17,58 @@
 package io.clogr.logback.provider;
 
 import static ch.qos.logback.classic.ClassicConstants.LOGBACK_CONTEXT_SELECTOR;
+import static io.clogr.logback.LoggerContextLoggingConcern.toLogbackLevel;
 
 import java.util.stream.Stream;
 
-import org.slf4j.impl.StaticLoggerBinder;
+import org.slf4j.Logger;
+import org.slf4j.event.Level;
 
-import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.selector.ContextSelector;
 import ch.qos.logback.classic.util.ContextSelectorStaticBinder;
-import io.clogr.Clogr;
+import io.clogr.BaseLoggingConcern;
 import io.clogr.LoggingConcern;
-import io.clogr.logback.ClogrContextSelector;
-import io.clogr.logback.LogbackLoggingConcern;
-import io.clogr.logback.LoggerContextDecoratorLoggingConcern;
+import io.clogr.logback.*;
 import io.csar.*;
 
 /**
- * Provides a default Logback-based concern for logging. A logging concern is returned that wraps the default Logback logger context.
- * <p>
- * If this is class is loaded before the Logback before {@link StaticLoggerBinder} is loaded and before {@link ContextSelectorStaticBinder} is initialized, a
- * {@link ClogrContextSelector} will be installed that will use {@link Clogr#getLoggingConcern()} to look up logging contexts.
- * </p>
+ * Provides a default Logback-based concern for logging. A logging concern is returned that recognizes the Logback SLF4J implementation.
+ * @implNote As of Logback 1.3.0-alpha4 Logback no longer supports the {@link ContextSelector} mechanism for logging separation. See
+ *           <a href="https://jira.qos.ch/browse/LOGBACK-1196">LOGBACK-1196</a> to track whether it will be reinstated in the future. This implementation still
+ *           supports legacy Logback implementations that recognize configuring a default context selector in order for non-Clogr-aware libraries to use Clogr's
+ *           separate configuration of concerns via Csar, although even in those cases it is not guaranteed that the Clogr context selector will be installed.
+ *           In all cases however this implementation will provide access to additional Logback functionality such as setting the log level
  * @author Garret Wilson
  * @see LogbackLoggingConcern
  */
 public class LogbackLoggingConcernProvider implements ConcernProvider {
 
-	static { //tell Logback to use the ClogrContextSelector for determining logging contexts
+	static {
+		/*
+		 * In earlier versions of Logback, it was possible to tell Logback to use the `ClogrContextSelector` for determining logging contexts.
+		 * However as of Logback 1.3.0-alpha4 Logback no longer supports the `ContextSelector` mechanism for logging separation.
+		 * Thus currently ContextSelectorStaticBinder is never initialized, `LOGBACK_CONTEXT_SELECTOR` is ignored, and the following has no effect.
+		 * See [LOGBACK-1196](https://jira.qos.ch/browse/LOGBACK-1196) to track whether it will be reinstated in the future.
+		 */
 		System.setProperty(LOGBACK_CONTEXT_SELECTOR, ClogrContextSelector.class.getName());
-		StaticLoggerBinder.getSingleton(); //load the SLF4J logger binder that initiates the Logback binding and installs the context selector 
 	}
 
 	@Override
 	public Stream<Concern> concerns() {
-		//get the default logger context from the context selector (which is hopefully the ClogrContextSelector we asked to be installed)
-		final LoggerContext defaultLoggerContext = ContextSelectorStaticBinder.getSingleton().getContextSelector().getDefaultLoggerContext();
-		//create a logging concern that wraps the default logger context
-		final LoggingConcern defaultLoggingConcern = new LoggerContextDecoratorLoggingConcern(defaultLoggerContext);
-		return Stream.of(defaultLoggingConcern);
+		final LoggingConcern logbackLoggingConcern;
+		//get the current context selector, which if `LOGBACK_CONTEXT_SELECTOR` were followed our `ClogrContextSelector` might have been installed
+		final ContextSelector contextSelector = ContextSelectorStaticBinder.getSingleton().getContextSelector();
+		if(contextSelector != null) { //if a pre-v1.3.0 Logback is being used, or context selection has been re-enabled
+			logbackLoggingConcern = new LoggerContextDecoratorLoggingConcern(contextSelector.getDefaultLoggerContext()); //create a logging concern that wraps the default logger context
+		} else {
+			logbackLoggingConcern = new BaseLoggingConcern() {
+				@Override
+				public void setLogLevel(final Logger logger, final Level level) {
+					((ch.qos.logback.classic.Logger)logger).setLevel(toLogbackLevel(level));
+				}
+			};
+		}
+		return Stream.of(logbackLoggingConcern);
 	}
 
 }

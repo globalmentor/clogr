@@ -33,6 +33,7 @@ import io.csar.*;
  * Tests for {@link ClogrContextSelector}.
  * @author Garret Wilson
  */
+@Disabled("As of Logback 1.3.0-alpha4 Logback no longer supports the `ContextSelector` mechanism for logging separation.")
 public class ClogrContextSelectorTest {
 
 	/**
