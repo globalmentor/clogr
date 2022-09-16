@@ -32,12 +32,8 @@ public interface LoggingConcern extends Concern {
 
 	/**
 	 * Default logging concern that essentially does nothing more than delegate to the default SLF4J configuration.
-	 * <p>
-	 * Retrieving a logger from this logger concern's {@link #getLogger(Class)} is equivalent to calling {@link LoggerFactory#getLogger(Class)}.
-	 * </p>
-	 * <p>
-	 * This logging concern does not support setting the log level.
-	 * </p>
+	 * @implSpec Retrieving a logger from this logger concern's {@link #getLogger(Class)} is equivalent to calling {@link LoggerFactory#getLogger(Class)}.
+	 * @implNote This logging concern does not support setting the log level.
 	 * @see LoggerFactory#getILoggerFactory()
 	 */
 	public static final LoggingConcern DEFAULT = new BaseLoggingConcern() {
@@ -58,9 +54,7 @@ public interface LoggingConcern extends Concern {
 
 	/**
 	 * Returns an appropriate logger for the given context.
-	 * <p>
-	 * The default implementation delegates to {@link ILoggerFactory#getLogger(String)} using the name of the context class as the logger name.
-	 * </p>
+	 * @implSpec The default implementation delegates to {@link ILoggerFactory#getLogger(String)} using the name of the context class as the logger name.
 	 * @param contextClass The context for which logging is to be performed.
 	 * @return A logger instance to use with the given context class.
 	 * @throws NullPointerException if the given context class is <code>null</code>.

@@ -78,9 +78,7 @@ public class Clogr {
 
 	/**
 	 * Returns an appropriate logger for the current context.
-	 * <p>
-	 * This is a convenience method that requests a logger from the current context logging concern.
-	 * </p>
+	 * @apiNote This is a convenience method that requests a logger from the current context logging concern.
 	 * @param contextClass The context for which logging is to be performed.
 	 * @return A logger instance to use with the given context class in the current context.
 	 * @throws NullPointerException if the given context class is <code>null</code>.

@@ -43,9 +43,7 @@ public interface LoggerContextLoggingConcern extends LoggingConcern {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>
-	 * This version returns the root logger as a Logback logger.
-	 * </p>
+	 * @implSpec This version returns the root logger as a Logback logger.
 	 */
 	@Override
 	public default ch.qos.logback.classic.Logger getRootLogger() {
