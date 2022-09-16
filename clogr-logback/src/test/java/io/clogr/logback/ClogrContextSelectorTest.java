@@ -16,11 +16,11 @@
 
 package io.clogr.logback;
 
-import static org.junit.Assert.*;
 import static ch.qos.logback.classic.ClassicConstants.LOGBACK_CONTEXT_SELECTOR;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;

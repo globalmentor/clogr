@@ -16,10 +16,10 @@
 
 package io.clogr.logback.provider;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.slf4j.impl.StaticLoggerBinder;
 
 import ch.qos.logback.classic.util.ContextSelectorStaticBinder;
