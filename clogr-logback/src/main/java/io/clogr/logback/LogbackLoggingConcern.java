@@ -26,14 +26,16 @@ import javax.annotation.*;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.classic.selector.ContextSelector;
 import ch.qos.logback.classic.util.ContextInitializer;
 import ch.qos.logback.core.joran.spi.JoranException;
 
 /**
  * A concern for logging configurations backed by Logback.
- * <p>
- * A Logback logging concern is also a {@link LoggerContext} and can be configured as such.
- * </p>
+ * @apiNote This logging concern is for manual, programmatic configuration. It is not a default logging concern that delegates to the existing Logback SLF4J
+ *          configuration.
+ * @apiNote A Logback logging concern is also a {@link LoggerContext} and can be configured as such. However note that as of Logback 1.3.0-alpha4 Logback no
+ *          longer supports the {@link ContextSelector} mechanism for logging separation.
  * @author Garret Wilson
  */
 public class LogbackLoggingConcern extends LoggerContext implements LoggerContextLoggingConcern {
@@ -45,9 +47,7 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 
 	/**
 	 * Automatically configures this logging concern.
-	 * <p>
-	 * This automatic configuration is equivalent to the configuration performed by a default Logback installation independent of Clogr.
-	 * </p>
+	 * @apiNote This automatic configuration is equivalent to the configuration performed by a default Logback installation independent of Clogr.
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
 	 */
@@ -58,10 +58,8 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 
 	/**
 	 * Configures this logging concern from a Logback configuration file at a specified path.
-	 * <p>
-	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
-	 * call {@link #reset()} between each step.
-	 * </p>
+	 * @apiNote If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration
+	 *          must not call {@link #reset()} between each step.
 	 * @param path The path to the Logback configuration file.
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
@@ -74,10 +72,8 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 
 	/**
 	 * Configures this logging concern from a Logback configuration file.
-	 * <p>
-	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
-	 * call {@link #reset()} between each step.
-	 * </p>
+	 * @apiNote If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration
+	 *          must not call {@link #reset()} between each step.
 	 * @param file The Logback configuration file.
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
@@ -94,10 +90,8 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 
 	/**
 	 * Configures this logging concern from a Logback configuration file at a specified URL.
-	 * <p>
-	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
-	 * call {@link #reset()} between each step.
-	 * </p>
+	 * @apiNote If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration
+	 *          must not call {@link #reset()} between each step.
 	 * @param url The URL to the Logback configuration file.
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;
@@ -114,10 +108,8 @@ public class LogbackLoggingConcern extends LoggerContext implements LoggerContex
 
 	/**
 	 * Configures this logging concern from a Logback configuration file from a specified input stream.
-	 * <p>
-	 * If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration must not
-	 * call {@link #reset()} between each step.
-	 * </p>
+	 * @apiNote If this logging concern previously had a configuration that you want to replace, you must first call {@link #reset()}. A multi-step configuration
+	 *          must not call {@link #reset()} between each step.
 	 * @param inputStream The input stream to the Logback configuration file.
 	 * @return This logging concern; useful for chaining configuration commands.
 	 * @throws JoranException if an error occurred during configuration;

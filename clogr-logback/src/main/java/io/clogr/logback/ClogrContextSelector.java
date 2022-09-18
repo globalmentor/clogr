@@ -29,9 +29,9 @@ import io.clogr.Clogr;
 
 /**
  * A Logback context selector that uses Clogr to get the current logging context.
- * <p>
- * This implementation does not support named contexts and returns an empty list.
- * </p>
+ * @apiNote As of Logback 1.3.0-alpha4 Logback no longer supports the {@link ContextSelector} mechanism for logging separation. See
+ *          <a href="https://jira.qos.ch/browse/LOGBACK-1196">LOGBACK-1196</a> to track whether it will be reinstated in the future.
+ * @implSpec This implementation does not support named contexts and returns an empty list.
  * @author Garret Wilson
  */
 public class ClogrContextSelector implements ContextSelector {
@@ -53,9 +53,7 @@ public class ClogrContextSelector implements ContextSelector {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>
-	 * This implementation uses Clogr to retrieve the current logger context.
-	 * </p>
+	 * @implSpec This implementation uses Clogr to retrieve the current logger context.
 	 * @throws ClassCastException if the current logging concern is not an instance of {@link LoggerContextLoggingConcern}.
 	 * @see Clogr#getLoggingConcern()
 	 */
@@ -66,9 +64,7 @@ public class ClogrContextSelector implements ContextSelector {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>
-	 * This implementation does not support named contexts and returns <code>null</code>.
-	 * </p>
+	 * @implSpec This implementation does not support named contexts and returns <code>null</code>.
 	 */
 	@Override
 	public LoggerContext detachLoggerContext(final String loggerContextName) {
@@ -77,9 +73,7 @@ public class ClogrContextSelector implements ContextSelector {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>
-	 * This implementation does not support named contexts and returns an empty list.
-	 * </p>
+	 * @implSpec This implementation does not support named contexts and returns an empty list.
 	 */
 	@Override
 	public List<String> getContextNames() {
@@ -88,9 +82,7 @@ public class ClogrContextSelector implements ContextSelector {
 
 	/**
 	 * {@inheritDoc}
-	 * <p>
-	 * This implementation does not support named contexts and returns <code>null</code>.
-	 * </p>
+	 * @implSpec This implementation does not support named contexts and returns <code>null</code>.
 	 */
 	public LoggerContext getLoggerContext(final String name) {
 		return null;

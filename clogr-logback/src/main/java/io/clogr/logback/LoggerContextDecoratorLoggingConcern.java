@@ -21,9 +21,12 @@ import static java.util.Objects.*;
 import javax.annotation.*;
 
 import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.selector.ContextSelector;
 
 /**
  * A concern for logging configurations wrapping an existing Logback {@link LoggerContext}.
+ * @apiNote As of Logback 1.3.0-alpha4 Logback no longer supports the {@link ContextSelector} mechanism for logging separation. See
+ *          <a href="https://jira.qos.ch/browse/LOGBACK-1196">LOGBACK-1196</a> to track whether it will be reinstated in the future.
  * @author Garret Wilson
  */
 public class LoggerContextDecoratorLoggingConcern implements LoggerContextLoggingConcern {

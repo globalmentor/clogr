@@ -5,23 +5,23 @@
 	<parent>
 		<groupId>com.globalmentor</groupId>
 		<artifactId>globalmentor-base</artifactId>
-		<version>0.6.0</version>
+		<version>0.7.2-SNAPSHOT</version>
 	</parent>
 
 	<groupId>io.clogr</groupId>
-	<artifactId>clogr-parent</artifactId>
+	<artifactId>clogr-bom</artifactId>
 	<version>0.8.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>Clogr Parent</name>
-	<description>Parent POM of all Clogr projects.</description>
+	<name>Clogr BOM</name>
+	<description>Parent POM and bill of materials of all Clogr projects.</description>
 	<url>https://clogr.io/</url>
 	<inceptionYear>2016</inceptionYear>
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -46,11 +46,6 @@
 		<url>https://bitbucket.org/globalmentor/clogr</url>
 	</scm>
 
-	<properties>
-		<slf4j.version>1.7.25</slf4j.version>
-		<csar.version>0.8.0</csar.version>
-	</properties>
-
 	<modules>
 		<module>clogr</module>
 		<module>clogr-logback</module>
@@ -72,15 +67,15 @@
 			</dependency>
 
 			<dependency>
-				<groupId>io.csar</groupId>
-				<artifactId>csar</artifactId>
-				<version>${csar.version}</version>
+				<groupId>io.clogr</groupId>
+				<artifactId>clogr-logback-provider</artifactId>
+				<version>0.8.1-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
+				<groupId>io.csar</groupId>
+				<artifactId>csar</artifactId>
+				<version>0.8.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

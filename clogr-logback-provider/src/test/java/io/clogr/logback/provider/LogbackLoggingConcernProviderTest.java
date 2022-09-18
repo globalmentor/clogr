@@ -16,15 +16,13 @@
 
 package io.clogr.logback.provider;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.*;
-import org.slf4j.impl.StaticLoggerBinder;
+import org.junit.jupiter.api.*;
 
 import ch.qos.logback.classic.util.ContextSelectorStaticBinder;
 import io.clogr.logback.ClogrContextSelector;
-import io.clogr.logback.provider.LogbackLoggingConcernProvider;
 
 /**
  * Tests of {@link LogbackLoggingConcernProvider}.
@@ -33,6 +31,7 @@ import io.clogr.logback.provider.LogbackLoggingConcernProvider;
  * </p>
  * @author Garret Wilson
  */
+@Disabled("As of Logback 1.3.0-alpha4 Logback no longer supports the `ContextSelector` mechanism for logging separation.")
 public class LogbackLoggingConcernProviderTest {
 
 	/**
@@ -42,7 +41,6 @@ public class LogbackLoggingConcernProviderTest {
 	@Test
 	public void testClogrContextSelectorInstalled() {
 		new LogbackLoggingConcernProvider(); //creating an instance is just to load and initialize the class, which will install the Clogr context selector
-		//		StaticLoggerBinder.getSingleton();	//kick off the SLF4J+Logback initialization process
 		assertThat(ContextSelectorStaticBinder.getSingleton().getContextSelector(), is(instanceOf(ClogrContextSelector.class)));
 	}
 

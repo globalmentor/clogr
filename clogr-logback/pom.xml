@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>io.clogr</groupId>
-		<artifactId>clogr-parent</artifactId>
+		<artifactId>clogr-bom</artifactId>
 		<version>0.8.1-SNAPSHOT</version>
 	</parent>
 
@@ -12,10 +12,6 @@
 
 	<name>Clogr Logback</name>
 	<description>Clogr support for Logback.</description>
-
-	<properties>
-		<logback.version>1.2.3</logback.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -26,7 +22,6 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
 		</dependency>
 	</dependencies>
 </project>
