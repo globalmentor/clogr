@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>com.globalmentor</groupId>
 		<artifactId>globalmentor-base</artifactId>
-		<version>0.7.2-SNAPSHOT</version>
+		<version>0.7.2</version>
 	</parent>
 
 	<groupId>io.clogr</groupId>
 	<artifactId>clogr-bom</artifactId>
-	<version>0.8.1-SNAPSHOT</version>
+	<version>0.8.1</version>
 	<packaging>pom</packaging>
 
 	<name>Clogr BOM</name>
@@ -28,7 +28,7 @@
 
 	<organization>
 		<name>GlobalMentor, Inc.</name>
-		<url>http://www.globalmentor.com/</url>
+		<url>https://www.globalmentor.com/</url>
 	</organization>
 
 	<developers>
@@ -36,7 +36,7 @@
 			<name>Garret Wilson</name>
 			<email>garret@globalmentor.com</email>
 			<organization>GlobalMentor, Inc.</organization>
-			<organizationUrl>http://www.globalmentor.com/</organizationUrl>
+			<organizationUrl>https://www.globalmentor.com/</organizationUrl>
 		</developer>
 	</developers>
 
@@ -57,25 +57,25 @@
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr</artifactId>
-				<version>0.8.1-SNAPSHOT</version>
+				<version>0.8.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback</artifactId>
-				<version>0.8.1-SNAPSHOT</version>
+				<version>0.8.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback-provider</artifactId>
-				<version>0.8.1-SNAPSHOT</version>
+				<version>0.8.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>io.csar</groupId>
 				<artifactId>csar</artifactId>
-				<version>0.8.1-SNAPSHOT</version>
+				<version>0.8.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
