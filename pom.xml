@@ -50,6 +50,7 @@
 		<module>clogr</module>
 		<module>clogr-logback</module>
 		<module>clogr-logback-provider</module>
+		<module>clogr-slf4j1-adapter</module>
 	</modules>
 
 	<dependencyManagement>
