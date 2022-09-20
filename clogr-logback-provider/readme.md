@@ -6,6 +6,10 @@ This library installs a global, default `LogbackLoggingConcern` instance via the
 
 This implementation includes `clogr-logback` as a dependency.
 
+## Download
+
+Clogr Logback is available in the [Maven Central Repository](https://search.maven.org/search?q=g:io.clogr%20AND%20a:clogr-logback-provider).
+
 ## Issues
 
 Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
