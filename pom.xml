@@ -50,7 +50,7 @@
 		<module>clogr</module>
 		<module>clogr-logback</module>
 		<module>clogr-logback-provider</module>
-		<module>clogr-slf4j1-adapter</module>
+		<module>slf4j1-shim</module>
 	</modules>
 
 	<dependencyManagement>
@@ -70,6 +70,12 @@
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback-provider</artifactId>
+				<version>0.8.3-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.clogr</groupId>
+				<artifactId>slf4j1-shim</artifactId>
 				<version>0.8.3-SNAPSHOT</version>
 			</dependency>
 

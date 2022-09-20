@@ -6,7 +6,7 @@ Clogr is not yet another logging facade. Rather Clogr facilitates access to SLF4
 
 Moreover classes needing access to a logger may implement `Clogged` for simplified retrieval of an SLF4J logger. 
 
-Clogr is based [upon SLF4J 2.x](https://www.slf4j.org/faq.html#changesInVersion200). If an application depends on the legacy SLF4J 1.x class `StaticLoggerBinder`, Clogr provides the [`clogr-slf4j1-adapter`](clogr-slf4j1-adapter/readme.md) library, which may be used as a stop-gap solution to allow such applications to work with SLF4J 2.x.
+Clogr is based [upon SLF4J 2.x](https://www.slf4j.org/faq.html#changesInVersion200). If an application depends on the legacy SLF4J 1.x class `StaticLoggerBinder`, Clogr provides the [`slf4j1-shim`](slf4j1-shim/readme.md) library, which may be used as a stop-gap solution to allow such applications to work with SLF4J 2.x.
 
 ## Download
 

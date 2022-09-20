@@ -8,7 +8,7 @@ This implementation includes `clogr-logback` as a dependency.
 
 ## Download
 
-Clogr Logback is available in the [Maven Central Repository](https://search.maven.org/search?q=g:io.clogr%20AND%20a:clogr-logback-provider).
+Clogr Logback Provider is available in the [Maven Central Repository](https://search.maven.org/search?q=g:io.clogr%20AND%20a:clogr-logback-provider).
 
 ## Issues
 
