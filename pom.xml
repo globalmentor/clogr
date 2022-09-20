@@ -10,7 +10,7 @@
 
 	<groupId>io.clogr</groupId>
 	<artifactId>clogr-bom</artifactId>
-	<version>0.8.2-SNAPSHOT</version>
+	<version>0.8.2</version>
 	<packaging>pom</packaging>
 
 	<name>Clogr BOM</name>
@@ -58,19 +58,19 @@
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr</artifactId>
-				<version>0.8.2-SNAPSHOT</version>
+				<version>0.8.2</version>
 			</dependency>
 
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback</artifactId>
-				<version>0.8.2-SNAPSHOT</version>
+				<version>0.8.2</version>
 			</dependency>
 
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>clogr-logback-provider</artifactId>
-				<version>0.8.2-SNAPSHOT</version>
+				<version>0.8.2</version>
 			</dependency>
 
 			<dependency>
