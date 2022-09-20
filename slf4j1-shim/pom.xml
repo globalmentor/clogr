@@ -8,10 +8,10 @@
 		<version>0.8.3-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>clogr-slf4j1-adapter</artifactId>
+	<artifactId>slf4j1-shim</artifactId>
 
-	<name>Clogr SLF4J 1.x Adapter</name>
-	<description>Clogr adapter for legacy SLF4J 1.x support for applications depending on StaticLoggerBinder.</description>
+	<name>SLF4J 1.x Shim</name>
+	<description>Shim for legacy SLF4J 1.x support for applications depending on StaticLoggerBinder.</description>
 
 	<dependencies>
 		<dependency>

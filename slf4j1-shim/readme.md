@@ -1,6 +1,6 @@
-# Clogr SLF4J 1.x Adapter
+# SLF4J 1.x Shim
 
-Clogr legacy support adapter for SLF4J 1.x.
+Clogr legacy support shim for SLF4J 1.x.
 
 This library supplies a fake stand-in implementation of `org.slf4j.impl.StaticLoggerBinder` so that SLF4J 2.x may be used even with applications that rely on `StaticLoggerBinder`. For such applications, simply include this library as a dependency; no further changes are needed.
 
@@ -11,7 +11,7 @@ _This library uses the `org.slf4j.impl` package, which represets a domain contro
 
 ## Download
 
-Clogr Logback is available in the [Maven Central Repository](https://search.maven.org/search?q=g:io.clogr%20AND%20a:clogr-slf4j1-adapter).
+Clogr Logback is available in the [Maven Central Repository](https://search.maven.org/search?q=g:io.clogr%20AND%20a:slf4j1-shim).
 
 ## Issues
 
@@ -19,4 +19,5 @@ Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
 
 ## Changelog
 
+- 0.8.3: Renamed shim library and added to BOM.
 - 0.8.2: First release.

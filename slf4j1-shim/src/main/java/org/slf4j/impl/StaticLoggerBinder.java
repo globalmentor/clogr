@@ -20,7 +20,7 @@ import org.slf4j.*;
 import org.slf4j.spi.LoggerFactoryBinder;
 
 /**
- * Clogr <code>StaticLoggerBinder</code> adapter for SLF4J 1.x legacy support.
+ * Clogr <code>StaticLoggerBinder</code> shim for SLF4J 1.x legacy support.
  * <p>
  * This class acts as a fake stand-in implementation of <code>org.slf4j.impl.StaticLoggerBinder</code> so that SLF4J 2.x may be used even with applications that
  * rely on <code>StaticLoggerBinder</code>. For such applications, simply include this library as a dependency; no further changes are needed.
