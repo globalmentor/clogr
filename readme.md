@@ -18,7 +18,8 @@ Issues tracked by [JIRA](https://globalmentor.atlassian.net/projects/CLOGR).
 
 ## Changelog
 
-- 0.8.2: SLF4J 1.x bridge for legacy application support.
+- 0.8.3: Renamed SLF4J 1.x shim library and added it to BOM.
+- 0.8.2: SLF4J 1.x adapter/shim for legacy application support.
 - 0.8.1: Updated dependencies.
 - 0.8.0: SLF4J 2.x support.
 - 0.7.0: First release.
