@@ -10,8 +10,8 @@
 
 	<artifactId>clogr</artifactId>
 
-	<name>Csar Logging Registration (Clogr)</name>
-	<description>Clogr simplifies SLF4J logging while providing compartmentalized logging configurations via Csar.</description>
+	<name>Clogr</name>
+	<description>Csar Logging Registration (Clogr) simplifies SLF4J logging while providing compartmentalized logging configurations via Csar.</description>
 
 	<dependencies>
 		<dependency>
