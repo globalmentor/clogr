@@ -17,7 +17,7 @@
 package org.slf4j.impl;
 
 import org.slf4j.*;
-import org.slf4j.spi.LoggerFactoryBinder;
+import org.slf4j.spi.*;
 
 /**
  * <code>StaticLoggerBinder</code> shim for SLF4J 1.x legacy support.
