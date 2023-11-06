@@ -15,7 +15,7 @@
 	<packaging>pom</packaging>
 
 	<name>Clogr BOM</name>
-	<description>Parent POM and bill of materials of all Clogr projects.</description>
+	<description>Aggregate bill of materials of all Clogr projects.</description>
 	<url>https://clogr.io/</url>
 	<inceptionYear>2016</inceptionYear>
 
@@ -48,6 +48,7 @@
 	</scm>
 
 	<modules>
+		<module>parent</module>
 		<module>clogr</module>
 		<module>clogr-logback</module>
 		<module>clogr-logback-provider</module>
@@ -77,12 +78,6 @@
 			<dependency>
 				<groupId>io.clogr</groupId>
 				<artifactId>slf4j1-shim</artifactId>
-				<version>0.9.0-SNAPSHOT</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.csar</groupId>
-				<artifactId>csar</artifactId>
 				<version>0.9.0-SNAPSHOT</version>
 			</dependency>
 		</dependencies>

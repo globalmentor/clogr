@@ -4,8 +4,9 @@
 
 	<parent>
 		<groupId>io.clogr</groupId>
-		<artifactId>clogr-bom</artifactId>
+		<artifactId>clogr-parent</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>slf4j1-shim</artifactId>
