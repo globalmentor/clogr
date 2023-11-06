@@ -49,17 +49,17 @@ public class Clogr {
 
 	/**
 	 * Returns the default logging concern.
-	 * @return The default logging concern.
+	 * @return The default logging concern, if any.
 	 * @see Csar#findDefaultConcern(Class)
 	 */
-	public static Optional<LoggingConcern> getDefaultLoggingConcern() {
+	public static Optional<LoggingConcern> findDefaultLoggingConcern() {
 		return Csar.findDefaultConcern(LoggingConcern.class);
 	}
 
 	/**
 	 * Sets the default logging concern.
 	 * @param loggingConcern The default logging concern to set.
-	 * @return The previous concern, or <code>null</code> if there was no previous concern.
+	 * @return The previous concern, if any.
 	 * @throws NullPointerException if the given concern is <code>null</code>.
 	 * @see Csar#registerDefaultConcern(Class, Concern)
 	 */
