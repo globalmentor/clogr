@@ -25,6 +25,7 @@ import javax.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.NOP_FallbackServiceProvider;
 import org.slf4j.spi.SLF4JServiceProvider;
 
 import io.csar.*;
@@ -169,6 +170,28 @@ public class Clogr {
 			System.setErr(originalSystemErr);
 		}
 		return true;
+	}
+
+	/**
+	 * Sets the SLF4J system default to use a no-op logging provider, essentially suppressing logging output. If SLF4J provider initialization has already
+	 * occurred, this method has no effect.
+	 * <p>
+	 * This default logging provider will only be used by Clogr logging concerns such as {@link LoggingConcern#DEFAULT} that access SLF4J directly, and by code
+	 * that accesses SLF4J without being aware of Clogr. This setting has no effect on Clogr logging concerns that do not use the system default.
+	 * </p>
+	 * @apiNote This method is useful to suppress logging output in unit tests, for example. By default SLF4J will fall back to a no-op logging provider, but
+	 *          explicitly requesting a system default no-op logging provider using this method will prevent the warning messages SLF4J usually generates when
+	 *          using a fallback provider.
+	 * @implSpec This implementation sets the <code>slf4j.provider</code> system property to indicate {@link NOP_FallbackServiceProvider} by delegating to
+	 *           {@link #setSystemDefaultLoggingProvider(Class)}.
+	 * @implNote This implementation immediately "locks in" the new value by initializing SLF4J, so that future calls to this method will have no effect on the
+	 *           default provider actually used. This is done to suppress an output to <code>stderr</code> noting that an explicit provider is being used. This
+	 *           behavior may be removed when SLF4J discontinues sending such a message to <code>stderr</code>; see
+	 *           <a href="https://github.com/qos-ch/slf4j/issues/361">#361: Don't log to stderr when slf4j.provider is used.</a>.
+	 * @see <a href="https://jira.qos.ch/browse/SLF4J-450">SLF4J-450: Allow binding to be explicitly specified</a>
+	 */
+	public static void setSystemDefaultLoggingProviderNop() {
+		setSystemDefaultLoggingProvider(NOP_FallbackServiceProvider.class);
 	}
 
 }
