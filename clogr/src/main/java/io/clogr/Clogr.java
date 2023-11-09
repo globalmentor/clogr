@@ -23,8 +23,7 @@ import java.util.*;
 
 import javax.annotation.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import org.slf4j.helpers.NOP_FallbackServiceProvider;
 import org.slf4j.spi.SLF4JServiceProvider;
 
@@ -108,7 +107,7 @@ public class Clogr {
 	 *          still allow it to be overridden by explicitly setting the system property externally. To set the default system logging provider invariably, even
 	 *          if it has already been set, call {@link #setSystemDefaultLoggingProvider(Class, boolean)} and specify a <code><var>force</var></code> value of
 	 *          <code>true</code>.
-	 * @implSpec This implementation sets the <code>slf4j.provider</code> system property by delegating to
+	 * @implSpec This implementation sets the {@value LoggerFactory#PROVIDER_PROPERTY_KEY} system property by delegating to
 	 *           {@link #setSystemDefaultLoggingProvider(Class, boolean)} with a <code><var>force</var></code> value of <code>false</code>.
 	 * @implNote This implementation immediately "locks in" the new value by initializing SLF4J, so that future calls to this method will have no effect on the
 	 *           default provider actually used. This is done to suppress an output to <code>stderr</code> noting that an explicit provider is being used. This
@@ -130,7 +129,7 @@ public class Clogr {
 	 * @apiNote This method is useful for specifying a particular SLF4J logging provider to use if multiple providers are available on the classpath; or
 	 *          explicitly setting the logging provider so that the classpath will not be scanned, in order to lower startup times; or supplying a provider to
 	 *          use, such as a NOP provider, if no provider is on the classpath at all.
-	 * @implSpec This implementation sets the <code>slf4j.provider</code> system property.
+	 * @implSpec This implementation sets the {@value LoggerFactory#PROVIDER_PROPERTY_KEY} system property.
 	 * @implNote This implementation immediately "locks in" the new value by initializing SLF4J, so that future calls to this method will have no effect on the
 	 *           default provider actually used. This is done to suppress an output to <code>stderr</code> noting that an explicit provider is being used. This
 	 *           behavior may be removed when SLF4J discontinues sending such a message to <code>stderr</code>; see
@@ -144,9 +143,8 @@ public class Clogr {
 	 * @see <a href="https://jira.qos.ch/browse/SLF4J-450">SLF4J-450: Allow binding to be explicitly specified</a>
 	 */
 	public static boolean setSystemDefaultLoggingProvider(@Nonnull final Class<? extends SLF4JServiceProvider> loggingProviderClass, final boolean force) {
-		final String slf4jProviderSystemProperty = "slf4j.provider"; //TODO switch to official SLF4J constant when available; see https://github.com/qos-ch/slf4j/issues/362
 		final String loggingProviderClassName = loggingProviderClass.getName();
-		final String currentSystemDefaultLoggingProviderClassName = System.getProperty(slf4jProviderSystemProperty);
+		final String currentSystemDefaultLoggingProviderClassName = System.getProperty(LoggerFactory.PROVIDER_PROPERTY_KEY);
 		final boolean isChanging = !loggingProviderClassName.equals(currentSystemDefaultLoggingProviderClassName);
 		if(currentSystemDefaultLoggingProviderClassName != null && isChanging && !force) {
 			getLogger(Clogr.class).atDebug().log("System default logger provider already set to `{}`; skipping request to change to `{}`.",
@@ -158,7 +156,7 @@ public class Clogr {
 				getLogger(Clogr.class).atWarn().log("Programmatically overriding system default logging provider already set to `{}` with `{}`.",
 						currentSystemDefaultLoggingProviderClassName, loggingProviderClass);
 			}
-			System.setProperty(slf4jProviderSystemProperty, loggingProviderClassName);
+			System.setProperty(LoggerFactory.PROVIDER_PROPERTY_KEY, loggingProviderClassName);
 		}
 		//retrieve a logger factory solely to lock-in the selected provider and suppress the notification to `stdout`
 		//see https://github.com/qos-ch/slf4j/issues/361
@@ -182,8 +180,8 @@ public class Clogr {
 	 * @apiNote This method is useful to suppress logging output in unit tests, for example. By default SLF4J will fall back to a no-op logging provider, but
 	 *          explicitly requesting a system default no-op logging provider using this method will prevent the warning messages SLF4J usually generates when
 	 *          using a fallback provider.
-	 * @implSpec This implementation sets the <code>slf4j.provider</code> system property to indicate {@link NOP_FallbackServiceProvider} by delegating to
-	 *           {@link #setSystemDefaultLoggingProvider(Class)}.
+	 * @implSpec This implementation sets the {@value LoggerFactory#PROVIDER_PROPERTY_KEY} system property to indicate {@link NOP_FallbackServiceProvider} by
+	 *           delegating to {@link #setSystemDefaultLoggingProvider(Class)}.
 	 * @implNote This implementation immediately "locks in" the new value by initializing SLF4J, so that future calls to this method will have no effect on the
 	 *           default provider actually used. This is done to suppress an output to <code>stderr</code> noting that an explicit provider is being used. This
 	 *           behavior may be removed when SLF4J discontinues sending such a message to <code>stderr</code>; see
